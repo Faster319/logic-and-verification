@@ -148,6 +148,9 @@ resolution(Conjunction, NewConjunction) :- resolutionstep(Conjunction, Temp), !,
 
 resolution(Conjunction, Conjunction).
 
+/* clauseform(X, Y) :- Y is the clause form of formula X. */
+clauseform(X, Y) :- expand([[X]], Y).
+
 /* if_then_else(X, Y, Z) :- Either X and Y, or not X and Z. */
 if_then_else(X, Y, _) :- X, !, Y.
 if_then_else(_, _, Z) :- Z.
