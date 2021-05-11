@@ -23,10 +23,10 @@ remove(X, [H | T], [H | NewT]) :- remove(X, T, NewT).
 append([], X, X).
 append([H | T], Z, [H | NewT]) :- append(T, Z, NewT).
 
-/* nonmember */
-nonmember(X, [X|_]) :- !, fail.
-nonmember(X, [_|T]) :- !, nonmember(X, T).
-nonmember(_, []).
+/* notmember(Item, List) :- Checks if an item is not part of a list. Returns false if yes. */
+notmember(X, [X|_]) :- !, fail.
+notmember(X, [_|T]) :- !, notmember(X, T).
+notmember(_, []).
 
 /* conjuctive(X) :- X is an alpha formula. */
 conjunctive(_ and _).
@@ -139,7 +139,7 @@ resolve(Disjunction1, Disjunction2, SortedResolved) :- member(neg X, Disjunction
 resolutionstep(Conjunctions, New) :- member(Disjunction1, Conjunctions),
                                      member(Disjunction2, Conjunctions),
                                      resolve(Disjunction1, Disjunction2, SortedResolved),
-                                     nonmember(SortedResolved, Conjunctions),
+                                     notmember(SortedResolved, Conjunctions),
                                      New = [SortedResolved | Conjunctions].
 
 /* resolution(Old, New) :- New is the result of applying resolutionstep as many times as possible, starting with Old. */
