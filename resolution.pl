@@ -155,7 +155,7 @@ clauseform(X, Y) :- expand([[X]], Y).
 if_then_else(X, Y, _) :- X, !, Y.
 if_then_else(_, _, Z) :- Z.
 
-/* test(X) :- Creates a resolution proof for neg X, if it has a proposition proof, print out YES, print out NO otherwise. */
+/* test(X) :- Creates a resolution proof for neg X, if it has a proposition proof, print out YES. Print out NO otherwise. */
 test(X) :- expand([[neg X]], Y),
            resolution(Y, Z),
            if_then_else(member([], Z), yes, no).
